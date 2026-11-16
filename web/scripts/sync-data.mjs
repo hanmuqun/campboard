@@ -1,5 +1,7 @@
 // Copies the data the Python pipeline produces into the web app before each build.
 // The Python side stays the only thing that talks to Recreation.gov.
+//
+// This is only the fallback the app ships with; at runtime pages read D1.
 import { copyFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,13 +20,4 @@ for (const file of ['snapshot.json', 'changes.json']) {
 	}
 	copyFileSync(from, join(out, file));
 	console.log(`synced ${file}`);
-}
-
-// a public copy of the raw snapshot, so /data.json is a real file
-const snap = join(src, 'snapshot.json');
-if (existsSync(snap)) {
-	const pub = join(here, '..', 'static');
-	mkdirSync(pub, { recursive: true });
-	copyFileSync(snap, join(pub, 'data.json'));
-	console.log('synced static/data.json');
 }
