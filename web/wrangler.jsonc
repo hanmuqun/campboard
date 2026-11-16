@@ -5,7 +5,10 @@
 	"compatibility_date": "2026-11-01",
 	"assets": {
 		"binding": "ASSETS",
-		"directory": ".svelte-kit/cloudflare"
+		"directory": ".svelte-kit/cloudflare",
+		// Without this the static-asset layer answers POST requests itself and
+		// /api/ingest never reaches the worker (it 404s).
+		"run_worker_first": true
 	},
 	"d1_databases": [
 		{
