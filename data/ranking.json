@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T12:42:36+00:00",
+ "generated": "2026-11-16T13:10:44+00:00",
  "pool": {
   "queries": 34,
   "campgrounds": 101
@@ -12,7 +12,12 @@
    "state": "Arizona",
    "sites": 288,
    "ratings": 6602,
-   "rating": 4.56
+   "rating": 4.56,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232445",
@@ -21,7 +26,12 @@
    "state": "Utah",
    "sites": 184,
    "ratings": 5866,
-   "rating": 4.6
+   "rating": 4.6,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232447",
@@ -30,7 +40,25 @@
    "state": "California",
    "sites": 235,
    "ratings": 4233,
-   "rating": 4.39
+   "rating": 4.39,
+   "windowDays": 150,
+   "windowRaw": "5 months",
+   "releaseDay": 15,
+   "tz": null,
+   "importantDates": [
+    {
+     "start": "2027-03-21",
+     "desc": "Sites 53-94 closed for hazard tree removal"
+    },
+    {
+     "start": "2027-03-28",
+     "desc": "Sites 1-52 closed for hazard tree removal"
+    },
+    {
+     "start": "2027-05-02",
+     "desc": "Sites 125-187 closed for food locker replacement"
+    }
+   ]
   },
   {
    "id": "234015",
@@ -39,7 +67,12 @@
    "state": "California",
    "sites": 134,
    "ratings": 4032,
-   "rating": 4.25
+   "rating": 4.25,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "272300",
@@ -48,7 +81,12 @@
    "state": "California",
    "sites": 119,
    "ratings": 3532,
-   "rating": 4.57
+   "rating": 4.57,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "247661",
@@ -57,7 +95,12 @@
    "state": "Wyoming",
    "sites": 317,
    "ratings": 3273,
-   "rating": 4.41
+   "rating": 4.41,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232487",
@@ -66,7 +109,12 @@
    "state": "Tennessee",
    "sites": 211,
    "ratings": 3252,
-   "rating": 4.48
+   "rating": 4.48,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232488",
@@ -75,7 +123,12 @@
    "state": "Tennessee",
    "sites": 161,
    "ratings": 2951,
-   "rating": 4.42
+   "rating": 4.42,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "258830",
@@ -84,7 +137,12 @@
    "state": "Wyoming",
    "sites": 341,
    "ratings": 2681,
-   "rating": 4.43
+   "rating": 4.43,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232496",
@@ -93,7 +151,12 @@
    "state": "California",
    "sites": 129,
    "ratings": 2607,
-   "rating": 4.42
+   "rating": 4.42,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232459",
@@ -101,8 +164,13 @@
    "park": "Shenandoah National Park",
    "state": "Virginia",
    "sites": 215,
-   "ratings": 2501,
-   "rating": 4.55
+   "ratings": 2503,
+   "rating": 4.55,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "272245",
@@ -111,7 +179,12 @@
    "state": "Utah",
    "sites": 65,
    "ratings": 2360,
-   "rating": 4.63
+   "rating": 4.63,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232508",
@@ -120,7 +193,12 @@
    "state": "Maine",
    "sites": 281,
    "ratings": 2301,
-   "rating": 4.54
+   "rating": 4.54,
+   "windowDays": 180,
+   "windowRaw": "6 Months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232473",
@@ -129,7 +207,12 @@
    "state": "California",
    "sites": 94,
    "ratings": 2277,
-   "rating": 4.16
+   "rating": 4.16,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232472",
@@ -138,7 +221,12 @@
    "state": "California",
    "sites": 97,
    "ratings": 2143,
-   "rating": 4.52
+   "rating": 4.52,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "234035",
@@ -147,7 +235,12 @@
    "state": "Texas",
    "sites": 93,
    "ratings": 2087,
-   "rating": 4.45
+   "rating": 4.45,
+   "windowDays": 180,
+   "windowRaw": "6 Months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232463",
@@ -156,7 +249,12 @@
    "state": "Colorado",
    "sites": 236,
    "ratings": 2031,
-   "rating": 4.49
+   "rating": 4.49,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "234038",
@@ -165,7 +263,12 @@
    "state": "Texas",
    "sites": 56,
    "ratings": 2018,
-   "rating": 4.59
+   "rating": 4.59,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232486",
@@ -174,7 +277,12 @@
    "state": "North Carolina",
    "sites": 142,
    "ratings": 2016,
-   "rating": 4.51
+   "rating": 4.51,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "272299",
@@ -183,7 +291,12 @@
    "state": "California",
    "sites": 59,
    "ratings": 1722,
-   "rating": 4.35
+   "rating": 4.35,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232467",
@@ -192,7 +305,12 @@
    "state": "Kentucky",
    "sites": 108,
    "ratings": 1652,
-   "rating": 4.44
+   "rating": 4.44,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "234059",
@@ -201,7 +319,12 @@
    "state": "Utah",
    "sites": 51,
    "ratings": 1649,
-   "rating": 4.68
+   "rating": 4.68,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   },
   {
    "id": "232489",
@@ -210,160 +333,12 @@
    "state": "Arizona",
    "sites": 87,
    "ratings": 1396,
-   "rating": 4.5
-  },
-  {
-   "id": "234039",
-   "name": "MANZANITA LAKE",
-   "park": "Lassen Volcanic National Park",
-   "state": "California",
-   "sites": 170,
-   "ratings": 1376,
-   "rating": 4.39
-  },
-  {
-   "id": "232464",
-   "name": "KALALOCH",
-   "park": "Olympic National Park",
-   "state": "Washington",
-   "sites": 151,
-   "ratings": 1374,
-   "rating": 4.43
-  },
-  {
-   "id": "232493",
-   "name": "FISH CREEK CAMPGROUND",
-   "park": "Glacier National Park",
-   "state": "Montana",
-   "sites": 170,
-   "ratings": 1320,
-   "rating": 4.35
-  },
-  {
-   "id": "251833",
-   "name": "Schoodic Woods Campground",
-   "park": "Acadia National Park",
-   "state": "Maine",
-   "sites": 90,
-   "ratings": 1318,
-   "rating": 4.76
-  },
-  {
-   "id": "234058",
-   "name": "North Campground (UT)",
-   "park": "Bryce Canyon National Park",
-   "state": "Utah",
-   "sites": 98,
-   "ratings": 1303,
-   "rating": 4.44
-  },
-  {
-   "id": "272266",
-   "name": "SOUTH CAMPGROUND (UT)",
-   "park": "Zion National Park",
-   "state": "Utah",
-   "sites": 124,
-   "ratings": 1262,
-   "rating": 4.26
-  },
-  {
-   "id": "10171274",
-   "name": "Apgar Campground",
-   "park": "Glacier National Park",
-   "state": "Montana",
-   "sites": 184,
-   "ratings": 1235,
-   "rating": 4.33
-  },
-  {
-   "id": "232446",
-   "name": "Wawona Campground",
-   "park": "Yosemite National Park",
-   "state": "California",
-   "sites": 98,
-   "ratings": 1181,
-   "rating": 4.44
-  },
-  {
-   "id": "232462",
-   "name": "Rocky Mountain National Park Glacier Basin Campground",
-   "park": "Rocky Mountain National Park",
-   "state": "Colorado",
-   "sites": 150,
-   "ratings": 1176,
-   "rating": 4.64
-  },
-  {
-   "id": "234674",
-   "name": "SEAWALL CAMPGROUND",
-   "park": "Acadia National Park",
-   "state": "Maine",
-   "sites": 178,
-   "ratings": 1171,
-   "rating": 4.51
-  },
-  {
-   "id": "258851",
-   "name": "Pine Springs Campground",
-   "park": "Guadalupe Mountains National Park",
-   "state": "Texas",
-   "sites": 35,
-   "ratings": 1136,
-   "rating": 4.26
-  },
-  {
-   "id": "251906",
-   "name": "SOL DUC HOT SPRINGS RESORT CAMPGROUND",
-   "park": "Olympic National Park",
-   "state": "Washington",
-   "sites": 96,
-   "ratings": 1131,
-   "rating": 3.84
-  },
-  {
-   "id": "234079",
-   "name": "Sunset Campground (UT)",
-   "park": "Bryce Canyon National Park",
-   "state": "Utah",
-   "sites": 101,
-   "ratings": 1112,
-   "rating": 4.5
-  },
-  {
-   "id": "258832",
-   "name": "Headwaters Campground at Flagg Ranch",
-   "park": "Grand Teton National Park",
-   "state": "Wyoming",
-   "sites": 163,
-   "ratings": 1092,
-   "rating": 4.31
-  },
-  {
-   "id": "232449",
-   "name": "North Pines Campground",
-   "park": "Yosemite National Park",
-   "state": "California",
-   "sites": 81,
-   "ratings": 1091,
-   "rating": 4.5
-  },
-  {
-   "id": "232466",
-   "name": "COUGAR ROCK CAMPGROUND",
-   "park": "Mount Rainier National Park",
-   "state": "Washington",
-   "sites": 176,
-   "ratings": 1089,
-   "rating": 4.47
-  },
-  {
-   "id": "232451",
-   "name": "Hodgdon Meadow Campground",
-   "park": "Yosemite National Park",
-   "state": "California",
-   "sites": 104,
-   "ratings": 998,
-   "rating": 3.86
+   "rating": 4.5,
+   "windowDays": 0,
+   "windowRaw": "0 months",
+   "releaseDay": 1,
+   "tz": null,
+   "importantDates": []
   }
  ]
 }

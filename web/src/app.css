@@ -72,3 +72,4 @@ border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
 .count{color:var(--muted);font-size:13px;margin:0 0 12px}
 .empty{padding:16px 0;color:var(--muted)}
 @media(max-width:640px){.hide-s{display:none}}
+.p-unreleased{background:transparent;color:#6b7280;border:1px dotted #b6bcc4}

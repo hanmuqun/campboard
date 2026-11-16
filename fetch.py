@@ -166,6 +166,10 @@ def select_campgrounds(top=23):
     return picked[:top]
 
 
+def add_days(d, n):
+    return date.fromordinal(d.toordinal() + n)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0)
@@ -233,6 +237,17 @@ def main():
 
         for row in merged.values():
             row["total"] = row["available"] + row["reserved"] + row["closed"] + row["nyr"]
+
+        # Mark calendar dates that Recreation.gov has not put on sale yet. They
+        # used to be indistinguishable from "closed", which made a bookable
+        # campground look like a dead one.
+        window_days = camp.get("windowDays") or 0
+        window_end = add_days(date.today(), window_days).isoformat() if window_days else None
+        if window_end:
+            for day, row in merged.items():
+                if day > window_end and row["available"] + row["reserved"] == 0:
+                    row["unreleased"] = 1
+
         campgrounds.append({
             "id": camp["id"],
             "name": camp["name"],
@@ -243,6 +258,8 @@ def main():
             "sites": camp.get("sites"),
             "status": status,
             "missing": failed,
+            "windowEnd": window_end,
+            "releaseDay": camp.get("releaseDay"),
             "days": merged,
         })
 

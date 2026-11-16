@@ -20,9 +20,15 @@
 	const openDays = nxt.filter((r) => r.available > 0).length;
 	const totalAvail = nxt.reduce((s, r) => s + r.available, 0);
 
-	const summary = nxt.length
+	const unreleasedN = d21.filter((d) => d.row?.unreleased).length;
+	const windowNote = unreleasedN && camp.windowEnd
+		? ` ${unreleasedN} of these nights are not on sale yet: Recreation.gov releases them in
+			monthly batches and has only opened dates up to ${camp.windowEnd}.`
+		: '';
+
+	const summary = (nxt.length
 		? `${openDays} of the next 21 nights have at least one free site. ${totalAvail} site-nights available in total.`
-		: 'This campground is closed for the season in the window shown.';
+		: 'This campground is closed for the season in the window shown.') + windowNote;
 
 	const week = d21.slice(0, 7);
 </script>

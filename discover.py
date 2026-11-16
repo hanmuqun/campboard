@@ -82,6 +82,38 @@ def as_int(v, default=0):
         return default
 
 
+def meta(fid):
+    """Booking rules for one campground: how far ahead it releases, and when.
+
+    Recreation.gov stores this as structured fields, so we do not have to parse
+    the prose in the description. This is the difference between "every night
+    is full" and "these nights are not on sale yet".
+    """
+    url = f"https://www.recreation.gov/api/camps/campgrounds/{fid}"
+    try:
+        time.sleep(0.35)
+        req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=45) as r:
+            c = json.loads(r.read().decode("utf-8")).get("campground") or {}
+    except Exception:  # noqa: BLE001
+        return {}
+    rules = c.get("facility_rules") or {}
+    win = rules.get("reservationWindow") or {}
+    units = (win.get("units") or "").lower()
+    value = as_int(win.get("value"), 0)
+    window_days = value if "day" in units else value * 30
+    return {
+        "windowDays": window_days,
+        "windowRaw": f"{value} {win.get('units') or 'months'}",
+        "releaseDay": as_int((rules.get("blockReleaseDay") or {}).get("value"), 1) or 1,
+        "tz": c.get("time_zone"),
+        "importantDates": [
+            {"start": d.get("start_date", "")[:10], "desc": d.get("description", "")}
+            for d in (c.get("important_dates") or [])[:4]
+        ],
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=40)
@@ -143,6 +175,11 @@ def main():
         key=lambda c: (c["ratings"], c["sites"]),
         reverse=True,
     )[: args.top]
+
+    for c in ranked:
+        c.update(meta(c["id"]))
+        print(f"  window {c['windowRaw']:12s} releases on the {c['releaseDay']:2d} "
+              f"-> {c['name'][:38]}")
 
     DATA.mkdir(exist_ok=True)
     out = DATA / "ranking.json"
