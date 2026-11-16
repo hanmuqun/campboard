@@ -1,0 +1,51 @@
+name: keepalive
+
+# GitHub silently disables scheduled workflows after 60 days without a commit.
+# The refresh workflow only reads data, so this one drops a timestamp every so
+# often to keep the schedule alive. Runs monthly; usually does nothing.
+
+on:
+  schedule:
+    - cron: "17 4 1 * *" # 04:17 UTC on the 1st of every month
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Commit even if the repo was touched recently"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  touch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Commit a timestamp if the repo has been quiet
+        env:
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+          last=$(git log -1 --format=%ct)
+          days=$(( ( $(date -u +%s) - last ) / 86400 ))
+          echo "last commit was $days day(s) ago"
+          if [ "$days" -lt 45 ] && [ "${FORCE:-false}" != "true" ]; then
+            echo "recent commit exists; nothing to do"
+            exit 0
+          fi
+          mkdir -p .github
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) keepalive (last commit was ${days}d ago)" >> .github/keepalive.txt
+          git config user.name "campboard-bot"
+          git config user.email "campboard-bot@users.noreply.github.com"
+          git add .github/keepalive.txt
+          git commit -m "chore: keepalive to keep the refresh schedule enabled"
+          git push
