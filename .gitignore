@@ -1,0 +1,22 @@
+# generated data (fetched every 30 minutes, never committed)
+data/*
+!data/candidates.json
+
+# python
+__pycache__/
+*.pyc
+
+# node / svelte
+web/node_modules/
+web/.svelte-kit/
+web/.wrangler/
+web/static/data.json
+
+# generated static site (build.py) and scratch dirs
+site/
+web/.dryrun/
+.wrangler/
+
+# local artifacts
+shot-*.png
+deploy.zip

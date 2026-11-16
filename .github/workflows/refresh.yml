@@ -1,0 +1,67 @@
+name: refresh
+
+# Re-fetch every campground from Recreation.gov and write the result into D1.
+# This runs on GitHub's machines, so it keeps working with the PC turned off.
+
+on:
+  schedule:
+    # Cron is UTC and GitHub may start a few minutes late, which does not matter.
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+    inputs:
+      no_cache:
+        description: "Ignore the 20-minute disk cache"
+        type: boolean
+        default: false
+
+# Never let two refreshes overlap.
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # The change log compares this run against the previous snapshot, so the
+      # runner needs that file back. A unique cache key plus a shared prefix
+      # restores the newest one without committing generated data.
+      - name: Restore previous snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/snapshot.json
+            data/changes.jsonl
+          key: state-${{ github.run_id }}
+          restore-keys: |
+            state-
+
+      - name: Fetch
+        run: python fetch.py --workers 2 ${{ inputs.no_cache && '--no-cache' || '' }}
+
+      - name: Push to D1
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: python push_d1.py
+
+      - name: Save snapshot
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/snapshot.json
+            data/changes.jsonl
+          key: state-${{ github.run_id }}

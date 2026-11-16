@@ -1,0 +1,26 @@
+{
+  "name": "campboard",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
+  "scripts": {
+    "data": "node scripts/sync-data.mjs",
+    "dev": "node scripts/sync-data.mjs && vite dev",
+    "prebuild": "node scripts/sync-data.mjs",
+    "build": "vite build && node scripts/postbuild.mjs",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-cloudflare": "^8.0.2",
+    "@sveltejs/kit": "^3.2.0",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte": "^5.57.3",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8",
+    "wrangler": "^4.162.0"
+  }
+}
