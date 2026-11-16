@@ -21,3 +21,9 @@ web/.dryrun/
 shot-*.png
 deploy.zip
 .ingest-key
+!data/ranking.json
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

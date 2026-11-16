@@ -38,6 +38,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 CACHE = DATA / "cache"
 CANDIDATES = DATA / "candidates.json"
+RANKING = DATA / "ranking.json"
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36")
@@ -135,9 +136,21 @@ def months_to_cover(today, span=2):
     return out
 
 
-def select_campgrounds():
+def select_campgrounds(top=23):
+    """Pick the campgrounds to track.
+
+    Preferred source is data/ranking.json, which discover.py rebuilds from
+    Recreation.gov review counts -- so the board follows popularity instead of
+    a list I typed once. The old curated list stays as a fallback so the
+    fetcher still runs if the ranking step has never been executed.
+    """
+    if RANKING.exists():
+        ranked = json.loads(RANKING.read_text(encoding="utf-8"))["ranking"]
+        return [{**c, "park": c.get("park") or "United States"} for c in ranked[:top]]
+
     if not CANDIDATES.exists():
-        raise SystemExit("data/candidates.json missing - run discover.py first")
+        raise SystemExit("no data/ranking.json and no data/candidates.json - run discover.py")
+    print("  (ranking.json missing, falling back to the curated list)")
     cands = json.loads(CANDIDATES.read_text(encoding="utf-8"))
     picked, seen = [], set()
     for park, patterns in PARKS.items():
@@ -150,12 +163,13 @@ def select_campgrounds():
             if any(p in name for p in patterns):
                 seen.add(c["id"])
                 picked.append({**c, "park": park})
-    return picked
+    return picked[:top]
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--top", type=int, default=23, help="how many ranked campgrounds to track")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--span", type=int, default=2, help="months to cover")
     ap.add_argument("--ttl", type=float, default=20.0, help="cache lifetime, minutes")
@@ -163,7 +177,7 @@ def main():
     args = ap.parse_args()
 
     months = months_to_cover(date.today(), args.span)
-    picks = select_campgrounds()
+    picks = select_campgrounds(args.top)
     if args.limit:
         picks = picks[: args.limit]
     print(f"covering {len(picks)} campgrounds x {len(months)} months")
@@ -173,19 +187,50 @@ def main():
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
         outcomes = list(ex.map(lambda j: load_month(j[0]["id"], j[1], args.ttl, args.no_cache), jobs))
 
-    per_month = {}
+    src_by, per_month = {}, {}
     for (camp, month), (days, src) in zip(jobs, outcomes):
+        src_by[(camp["id"], month)] = src
         if days:
             per_month.setdefault(camp["id"], {})[month] = days
 
-    campgrounds, empty = [], 0
+    out = DATA / "snapshot.json"
+    previous = None
+    if out.exists():
+        try:
+            previous = json.loads(out.read_text(encoding="utf-8"))
+        except ValueError:
+            previous = None
+    prev_by = {c["id"]: c for c in (previous or {}).get("campgrounds", [])}
+
+    campgrounds, n_stale, n_unknown, n_empty = [], 0, 0, 0
     for camp in picks:
         merged = {}
         for month_days in per_month.get(camp["id"], {}).values():
             merged.update(month_days)
-        if not merged:
-            empty += 1
-            continue
+
+        failed = [m for m in months if src_by.get((camp["id"], m)) == "error"]
+        prev = prev_by.get(camp["id"])
+        status = "ok"
+
+        if failed:
+            # A timeout is not a fact. Never let it render as "every night is
+            # full": keep the last numbers we actually saw and label them.
+            if prev:
+                for day, row in (prev.get("days") or {}).items():
+                    if day[:7] in failed:
+                        merged[day] = dict(row)
+                status = "stale"
+                n_stale += 1
+            elif merged:
+                status = "stale"
+                n_stale += 1
+            else:
+                status = "unknown"
+                n_unknown += 1
+        elif not merged:
+            status = "no_data"  # seasonally closed, or dates not released yet
+            n_empty += 1
+
         for row in merged.values():
             row["total"] = row["available"] + row["reserved"] + row["closed"] + row["nyr"]
         campgrounds.append({
@@ -196,6 +241,8 @@ def main():
             "state": camp.get("state"),
             "url": f"https://www.recreation.gov/camping/campgrounds/{camp['id']}",
             "sites": camp.get("sites"),
+            "status": status,
+            "missing": failed,
             "days": merged,
         })
 
@@ -206,20 +253,14 @@ def main():
         "campgrounds": campgrounds,
     }
     DATA.mkdir(exist_ok=True)
-    out = DATA / "snapshot.json"
-    previous = None
-    if out.exists():
-        try:
-            previous = json.loads(out.read_text(encoding="utf-8"))
-        except ValueError:
-            previous = None
     out.write_text(json.dumps(snapshot, separators=(",", ":")), encoding="utf-8")
 
     events = changelog.record(previous, snapshot)
 
     net = sum(1 for _, src in outcomes if src == "net")
     moved = [e for e in events if e["kind"] in ("opened", "released")]
-    print(f"kept {len(campgrounds)} campgrounds ({empty} had no data); "
+    print(f"kept {len(campgrounds)} campgrounds "
+          f"({n_stale} stale, {n_unknown} unknown, {n_empty} no data yet); "
           f"{net} network fetches, {len(outcomes) - net} from cache; "
           f"{time.time() - started:.1f}s -> {out} ({out.stat().st_size / 1024:.0f} KB)")
     print(f"{len(events)} change events ({len(moved)} new openings) -> {changelog.JSONL}")

@@ -48,7 +48,10 @@ export function daysFrom(camp, start, n) {
 }
 
 export function pillFor(row) {
-	if (!row || bookable(row) === 0) return { cls: 'p-closed', text: 'closed' };
+	// No row means "we did not get an answer", not "this night is full". Those
+	// are different facts and the board must not conflate them.
+	if (!row) return { cls: 'p-unknown', text: 'n/a' };
+	if (bookable(row) === 0) return { cls: 'p-closed', text: 'closed' };
 	if (row.available === 0) return { cls: 'p-zero', text: '0' };
 	return { cls: ratio(row) < 0.34 ? 'p-low' : 'p-ok', text: String(row.available) };
 }

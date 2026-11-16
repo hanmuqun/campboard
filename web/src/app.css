@@ -50,6 +50,7 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px;paddin
 footer a{color:var(--muted)}
 .nowrap{white-space:nowrap}
 ul.fresh{margin:0 0 28px;padding-left:20px;line-height:1.75}
+.p-unknown{background:#eceef0;color:#6b7280}
 .searchbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
 gap:10px;margin:34px 0 10px}
 .searchbar h2{margin:0}

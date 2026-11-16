@@ -55,7 +55,8 @@
 	}
 
 	function barClass(row) {
-		if (!row || bookable(row) === 0) return 'p-closed';
+		if (!row) return 'p-unknown';
+		if (bookable(row) === 0) return 'p-closed';
 		return row.available === 0 ? 'p-zero' : 'p-ok';
 	}
 </script>

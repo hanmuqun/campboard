@@ -1,0 +1,369 @@
+{
+ "generated": "2026-11-16T12:42:36+00:00",
+ "pool": {
+  "queries": 34,
+  "campgrounds": 101
+ },
+ "ranking": [
+  {
+   "id": "232490",
+   "name": "MATHER CAMPGROUND",
+   "park": "Grand Canyon National Park",
+   "state": "Arizona",
+   "sites": 288,
+   "ratings": 6602,
+   "rating": 4.56
+  },
+  {
+   "id": "232445",
+   "name": "WATCHMAN CAMPGROUND",
+   "park": "Zion National Park",
+   "state": "Utah",
+   "sites": 184,
+   "ratings": 5866,
+   "rating": 4.6
+  },
+  {
+   "id": "232447",
+   "name": "Upper Pines Campground",
+   "park": "Yosemite National Park",
+   "state": "California",
+   "sites": 235,
+   "ratings": 4233,
+   "rating": 4.39
+  },
+  {
+   "id": "234015",
+   "name": "PINNACLES CAMPGROUND",
+   "park": "Pinnacles National Park",
+   "state": "California",
+   "sites": 134,
+   "ratings": 4032,
+   "rating": 4.25
+  },
+  {
+   "id": "272300",
+   "name": "JUMBO ROCKS CAMPGROUND",
+   "park": "Joshua Tree National Park",
+   "state": "California",
+   "sites": 119,
+   "ratings": 3532,
+   "rating": 4.57
+  },
+  {
+   "id": "247661",
+   "name": "Gros Ventre Campground",
+   "park": "Grand Teton National Park",
+   "state": "Wyoming",
+   "sites": 317,
+   "ratings": 3273,
+   "rating": 4.41
+  },
+  {
+   "id": "232487",
+   "name": "ELKMONT CAMPGROUND",
+   "park": "Great Smoky Mountains National Park",
+   "state": "Tennessee",
+   "sites": 211,
+   "ratings": 3252,
+   "rating": 4.48
+  },
+  {
+   "id": "232488",
+   "name": "CADES COVE CAMPGROUND",
+   "park": "Great Smoky Mountains National Park",
+   "state": "Tennessee",
+   "sites": 161,
+   "ratings": 2951,
+   "rating": 4.42
+  },
+  {
+   "id": "258830",
+   "name": "Colter Bay Campground",
+   "park": "Grand Teton National Park",
+   "state": "Wyoming",
+   "sites": 341,
+   "ratings": 2681,
+   "rating": 4.43
+  },
+  {
+   "id": "232496",
+   "name": "Furnace Creek Campground",
+   "park": "Death Valley National Park",
+   "state": "California",
+   "sites": 129,
+   "ratings": 2607,
+   "rating": 4.42
+  },
+  {
+   "id": "232459",
+   "name": "Big Meadows Campground - Shenandoah (VA)",
+   "park": "Shenandoah National Park",
+   "state": "Virginia",
+   "sites": 215,
+   "ratings": 2501,
+   "rating": 4.55
+  },
+  {
+   "id": "272245",
+   "name": "FRUITA CAMPGROUND",
+   "park": "Capitol Reef National Park",
+   "state": "Utah",
+   "sites": 65,
+   "ratings": 2360,
+   "rating": 4.63
+  },
+  {
+   "id": "232508",
+   "name": "BLACKWOODS CAMPGROUND",
+   "park": "Acadia National Park",
+   "state": "Maine",
+   "sites": 281,
+   "ratings": 2301,
+   "rating": 4.54
+  },
+  {
+   "id": "232473",
+   "name": "BLACK ROCK CAMPGROUND",
+   "park": "Joshua Tree National Park",
+   "state": "California",
+   "sites": 94,
+   "ratings": 2277,
+   "rating": 4.16
+  },
+  {
+   "id": "232472",
+   "name": "INDIAN COVE CAMPGROUND",
+   "park": "Joshua Tree National Park",
+   "state": "California",
+   "sites": 97,
+   "ratings": 2143,
+   "rating": 4.52
+  },
+  {
+   "id": "234035",
+   "name": "Rio Grande Village (Big Bend, TX)",
+   "park": "Big Bend National Park",
+   "state": "Texas",
+   "sites": 93,
+   "ratings": 2087,
+   "rating": 4.45
+  },
+  {
+   "id": "232463",
+   "name": "Rocky Mountain National Park Moraine Park Campground",
+   "park": "Rocky Mountain National Park",
+   "state": "Colorado",
+   "sites": 236,
+   "ratings": 2031,
+   "rating": 4.49
+  },
+  {
+   "id": "234038",
+   "name": "Chisos Basin Campground (Big Bend, TX)",
+   "park": "Big Bend National Park",
+   "state": "Texas",
+   "sites": 56,
+   "ratings": 2018,
+   "rating": 4.59
+  },
+  {
+   "id": "232486",
+   "name": "SMOKEMONT CAMPGROUND",
+   "park": "Great Smoky Mountains National Park",
+   "state": "North Carolina",
+   "sites": 142,
+   "ratings": 2016,
+   "rating": 4.51
+  },
+  {
+   "id": "272299",
+   "name": "COTTONWOOD CAMPGROUND (CA)",
+   "park": "Joshua Tree National Park",
+   "state": "California",
+   "sites": 59,
+   "ratings": 1722,
+   "rating": 4.35
+  },
+  {
+   "id": "232467",
+   "name": "MAMMOTH CAVE CAMPGROUND",
+   "park": "Mammoth Cave National Park",
+   "state": "Kentucky",
+   "sites": 108,
+   "ratings": 1652,
+   "rating": 4.44
+  },
+  {
+   "id": "234059",
+   "name": "DEVILS GARDEN CAMPGROUND",
+   "park": "Arches National Park",
+   "state": "Utah",
+   "sites": 51,
+   "ratings": 1649,
+   "rating": 4.68
+  },
+  {
+   "id": "232489",
+   "name": "North Rim Campground (AZ)",
+   "park": "Grand Canyon National Park",
+   "state": "Arizona",
+   "sites": 87,
+   "ratings": 1396,
+   "rating": 4.5
+  },
+  {
+   "id": "234039",
+   "name": "MANZANITA LAKE",
+   "park": "Lassen Volcanic National Park",
+   "state": "California",
+   "sites": 170,
+   "ratings": 1376,
+   "rating": 4.39
+  },
+  {
+   "id": "232464",
+   "name": "KALALOCH",
+   "park": "Olympic National Park",
+   "state": "Washington",
+   "sites": 151,
+   "ratings": 1374,
+   "rating": 4.43
+  },
+  {
+   "id": "232493",
+   "name": "FISH CREEK CAMPGROUND",
+   "park": "Glacier National Park",
+   "state": "Montana",
+   "sites": 170,
+   "ratings": 1320,
+   "rating": 4.35
+  },
+  {
+   "id": "251833",
+   "name": "Schoodic Woods Campground",
+   "park": "Acadia National Park",
+   "state": "Maine",
+   "sites": 90,
+   "ratings": 1318,
+   "rating": 4.76
+  },
+  {
+   "id": "234058",
+   "name": "North Campground (UT)",
+   "park": "Bryce Canyon National Park",
+   "state": "Utah",
+   "sites": 98,
+   "ratings": 1303,
+   "rating": 4.44
+  },
+  {
+   "id": "272266",
+   "name": "SOUTH CAMPGROUND (UT)",
+   "park": "Zion National Park",
+   "state": "Utah",
+   "sites": 124,
+   "ratings": 1262,
+   "rating": 4.26
+  },
+  {
+   "id": "10171274",
+   "name": "Apgar Campground",
+   "park": "Glacier National Park",
+   "state": "Montana",
+   "sites": 184,
+   "ratings": 1235,
+   "rating": 4.33
+  },
+  {
+   "id": "232446",
+   "name": "Wawona Campground",
+   "park": "Yosemite National Park",
+   "state": "California",
+   "sites": 98,
+   "ratings": 1181,
+   "rating": 4.44
+  },
+  {
+   "id": "232462",
+   "name": "Rocky Mountain National Park Glacier Basin Campground",
+   "park": "Rocky Mountain National Park",
+   "state": "Colorado",
+   "sites": 150,
+   "ratings": 1176,
+   "rating": 4.64
+  },
+  {
+   "id": "234674",
+   "name": "SEAWALL CAMPGROUND",
+   "park": "Acadia National Park",
+   "state": "Maine",
+   "sites": 178,
+   "ratings": 1171,
+   "rating": 4.51
+  },
+  {
+   "id": "258851",
+   "name": "Pine Springs Campground",
+   "park": "Guadalupe Mountains National Park",
+   "state": "Texas",
+   "sites": 35,
+   "ratings": 1136,
+   "rating": 4.26
+  },
+  {
+   "id": "251906",
+   "name": "SOL DUC HOT SPRINGS RESORT CAMPGROUND",
+   "park": "Olympic National Park",
+   "state": "Washington",
+   "sites": 96,
+   "ratings": 1131,
+   "rating": 3.84
+  },
+  {
+   "id": "234079",
+   "name": "Sunset Campground (UT)",
+   "park": "Bryce Canyon National Park",
+   "state": "Utah",
+   "sites": 101,
+   "ratings": 1112,
+   "rating": 4.5
+  },
+  {
+   "id": "258832",
+   "name": "Headwaters Campground at Flagg Ranch",
+   "park": "Grand Teton National Park",
+   "state": "Wyoming",
+   "sites": 163,
+   "ratings": 1092,
+   "rating": 4.31
+  },
+  {
+   "id": "232449",
+   "name": "North Pines Campground",
+   "park": "Yosemite National Park",
+   "state": "California",
+   "sites": 81,
+   "ratings": 1091,
+   "rating": 4.5
+  },
+  {
+   "id": "232466",
+   "name": "COUGAR ROCK CAMPGROUND",
+   "park": "Mount Rainier National Park",
+   "state": "Washington",
+   "sites": 176,
+   "ratings": 1089,
+   "rating": 4.47
+  },
+  {
+   "id": "232451",
+   "name": "Hodgdon Meadow Campground",
+   "park": "Yosemite National Park",
+   "state": "California",
+   "sites": 104,
+   "ratings": 998,
+   "rating": 3.86
+  }
+ ]
+}
