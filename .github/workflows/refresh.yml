@@ -1,7 +1,8 @@
 name: refresh
 
-# Re-fetch every campground from Recreation.gov and write the result into D1.
-# This runs on GitHub's machines, so it keeps working with the PC turned off.
+# Re-fetch every campground from Recreation.gov and hand the snapshot to the
+# site's own /api/ingest endpoint. Runs on GitHub's machines, so the PC can be
+# off. No wrangler, no Cloudflare API token: one HTTPS POST with a shared key.
 
 on:
   schedule:
@@ -31,10 +32,6 @@ jobs:
         with:
           python-version: "3.13"
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       # The change log compares this run against the previous snapshot, so the
       # runner needs that file back. A unique cache key plus a shared prefix
       # restores the newest one without committing generated data.
@@ -51,11 +48,10 @@ jobs:
       - name: Fetch
         run: python fetch.py --workers 2 ${{ inputs.no_cache && '--no-cache' || '' }}
 
-      - name: Push to D1
+      - name: Push to the site
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: python push_d1.py
+          INGEST_KEY: ${{ secrets.INGEST_KEY }}
+        run: python push_http.py
 
       - name: Save snapshot
         if: always()

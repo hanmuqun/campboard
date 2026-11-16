@@ -20,3 +20,4 @@ web/.dryrun/
 # local artifacts
 shot-*.png
 deploy.zip
+.ingest-key
