@@ -50,4 +50,13 @@ footer{border-top:1px solid var(--line);color:var(--muted);font-size:12px;paddin
 footer a{color:var(--muted)}
 .nowrap{white-space:nowrap}
 ul.fresh{margin:0 0 28px;padding-left:20px;line-height:1.75}
+.searchbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+gap:10px;margin:34px 0 10px}
+.searchbar h2{margin:0}
+.searchbar input{flex:1 1 240px;max-width:340px;padding:8px 11px;font:inherit;font-size:14px;
+border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.searchbar input::placeholder{color:#9ca3af}
+.searchbar input:focus{outline:2px solid var(--ink);outline-offset:1px}
+.count{color:var(--muted);font-size:13px;margin:0 0 12px}
+.empty{padding:16px 0;color:var(--muted)}
 @media(max-width:640px){.hide-s{display:none}}

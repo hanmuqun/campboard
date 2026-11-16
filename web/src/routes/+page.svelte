@@ -30,11 +30,37 @@
 
 	const fresh = changes.filter((c) => c.kind === 'opened' || c.kind === 'released').slice(0, 6);
 
+	// 23 rows is small enough that filtering in the browser is instant and needs
+	// no search index, no extra request, and no third-party service.
+	let q = $state('');
+	let box;
+
+	const filtered = $derived.by(() => {
+		const needle = q.trim().toLowerCase();
+		if (!needle) return rows;
+		return rows.filter(({ camp }) =>
+			`${camp.name} ${camp.park} ${camp.state ?? ''}`.toLowerCase().includes(needle)
+		);
+	});
+
+	function onKey(e) {
+		const typing = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
+		if (e.key === '/' && !typing) {
+			e.preventDefault();
+			box?.focus();
+		} else if (e.key === 'Escape' && typing) {
+			q = '';
+			box?.blur();
+		}
+	}
+
 	function barClass(row) {
 		if (!row || bookable(row) === 0) return 'p-closed';
 		return row.available === 0 ? 'p-zero' : 'p-ok';
 	}
 </script>
+
+<svelte:window onkeydown={onKey} />
 
 <svelte:head>
 	<title>Campboard — live US campsite availability, one page</title>
@@ -66,44 +92,60 @@
 	</ul>
 {/if}
 
-<h2>Availability, soonest first</h2>
-<table>
-	<thead>
-		<tr>
-			<th>Campground</th>
-			<th class="num">Tonight</th>
-			<th class="num">Sat</th>
-			<th class="num">Sun</th>
-			<th class="num">7 days</th>
-			<th class="hide-s">Next 7 nights</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each rows as { camp, avail7, d7 } (camp.id)}
-			{@const tonight = pillFor(camp.days[todayKey])}
-			{@const satPill = pillFor(camp.days[sat])}
-			{@const sunPill = pillFor(camp.days[sun])}
+<div class="searchbar">
+	<h2>Availability, soonest first</h2>
+	<input
+		bind:this={box}
+		bind:value={q}
+		type="search"
+		placeholder="Filter by campground or park  ( / )"
+		aria-label="Filter campgrounds by name or park"
+	/>
+</div>
+{#if q.trim()}
+	<p class="count">Showing {filtered.length} of {rows.length}</p>
+{/if}
+{#if filtered.length === 0}
+	<p class="empty">Nothing matches &ldquo;{q.trim()}&rdquo;. Try the park name instead.</p>
+{:else}
+	<table>
+		<thead>
 			<tr>
-				<td class="camp">
-					<a href="/campground/{camp.id}">{camp.name}</a>
-					<div class="park">{camp.park}</div>
-				</td>
-				<td class="num"><span class="pill {tonight.cls}">{tonight.text}</span></td>
-				<td class="num"><span class="pill {satPill.cls}">{satPill.text}</span></td>
-				<td class="num"><span class="pill {sunPill.cls}">{sunPill.text}</span></td>
-				<td class="num">{avail7 || "—"}</td>
-				<td class="hide-s nowrap">
-					{#each d7 as { row }}
-						<span
-							class="pill {barClass(row)}"
-							style="min-width:0;padding:2px 5px;font-size:11px"
-						>{row && bookable(row) > 0 ? row.available : ''}</span>
-					{/each}
-				</td>
+				<th>Campground</th>
+				<th class="num">Tonight</th>
+				<th class="num">Sat</th>
+				<th class="num">Sun</th>
+				<th class="num">7 days</th>
+				<th class="hide-s">Next 7 nights</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#each filtered as { camp, avail7, d7 } (camp.id)}
+				{@const tonight = pillFor(camp.days[todayKey])}
+				{@const satPill = pillFor(camp.days[sat])}
+				{@const sunPill = pillFor(camp.days[sun])}
+				<tr>
+					<td class="camp">
+						<a href="/campground/{camp.id}">{camp.name}</a>
+						<div class="park">{camp.park}</div>
+					</td>
+					<td class="num"><span class="pill {tonight.cls}">{tonight.text}</span></td>
+					<td class="num"><span class="pill {satPill.cls}">{satPill.text}</span></td>
+					<td class="num"><span class="pill {sunPill.cls}">{sunPill.text}</span></td>
+					<td class="num">{avail7 || "—"}</td>
+					<td class="hide-s nowrap">
+						{#each d7 as { row }}
+							<span
+								class="pill {barClass(row)}"
+								style="min-width:0;padding:2px 5px;font-size:11px"
+							>{row && bookable(row) > 0 ? row.available : ''}</span>
+						{/each}
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+{/if}
 <p class="lede" style="margin-top:26px">
 	Each number is free tent/RV sites for that night. Closed means closed for the season, not booked.
 </p>
